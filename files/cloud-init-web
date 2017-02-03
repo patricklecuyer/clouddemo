@@ -1,0 +1,23 @@
+#cloud-config
+
+package_upgrade: true
+
+yum_repos:
+  saltstack:
+    name: SaltStack repo for Amazon Linux $releasever
+    baseurl: https://repo.saltstack.com/yum/redhat/6/$basearch/latest
+    enabled: true
+    gpgcheck: false
+
+  epel:
+   baseurl: http://download.fedoraproject.org/pub/epel/6/$basearch
+   enabled: true
+   gpgcheck: false
+   name: Extra Packages for Enterprise Linux 6
+
+
+packages:
+  - salt-minion
+
+runcmd:
+  - sudo /etc/init.d/salt-minion start
